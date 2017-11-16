@@ -71,7 +71,7 @@ The classifier for this project was trained using the script `train.py`.  The fo
 
 2. The training images for each class are shuffled, and only 5000 from each class are kept.
 
-3. A feature vector is extracted for each image, using HOG, spacial binning, and histogram of colors.
+3. A feature vector is extracted for each image, using HOG, spatial binning, and histogram of colors.
 
 4. Features and labels are split 80/20 between training and testing using `sklearn.model_selection.train_test_split`.
 
