@@ -39,11 +39,11 @@ The classifier was trained on stacked HOG vectors from all three channels in the
 
 <img src="./examples/car_example.png" width=256> <img src="./examples/notcar_example.png" width=256>
 
-<img src="./examples/car_ch0.jpg" width=128><img src="./examples/car_hog_vis_0.jpg" width=128> <img src="./examples/notcar_ch0.jpg" width=128><img src="./examples/notcar_hog_vis_0.jpg" width=128>Y (Luma)
+<img src="./examples/car_ch0.jpg" width=128><img src="./examples/car_hog_vis_0.jpg" width=128> <img src="./examples/notcar_ch0.jpg" width=128><img src="./examples/notcar_hog_vis_0.jpg" width=128> Y (Luma)
 
-<img src="./examples/car_ch1.jpg" width=128><img src="./examples/car_hog_vis_1.jpg" width=128> <img src="./examples/notcar_ch1.jpg" width=128><img src="./examples/notcar_hog_vis_1.jpg" width=128>Cr (Chroma)
+<img src="./examples/car_ch1.jpg" width=128><img src="./examples/car_hog_vis_1.jpg" width=128> <img src="./examples/notcar_ch1.jpg" width=128><img src="./examples/notcar_hog_vis_1.jpg" width=128> Cr (Chroma)
 
-<img src="./examples/car_ch2.jpg" width=128><img src="./examples/car_hog_vis_2.jpg" width=128> <img src="./examples/notcar_ch2.jpg" width=128><img src="./examples/notcar_hog_vis_2.jpg" width=128>Cb (Chroma)
+<img src="./examples/car_ch2.jpg" width=128><img src="./examples/car_hog_vis_2.jpg" width=128> <img src="./examples/notcar_ch2.jpg" width=128><img src="./examples/notcar_hog_vis_2.jpg" width=128> Cb (Chroma)
 
 **Figure 1**: top: Images from each class in the dataset; below: Each color channel and its HOG visualization
 
