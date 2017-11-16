@@ -1,0 +1,5 @@
+*.DS_Store
+examples/.DS_Store
+__pycache__
+
+training_images/
