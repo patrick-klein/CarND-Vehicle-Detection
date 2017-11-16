@@ -8,7 +8,7 @@
 
 The goals / steps of this project are the following:
 
-* Perform feature extraction on the dataset using Histogram of Oriented Gradients (HOG), spacial binning, and histogram of colors.
+* Perform feature extraction on the dataset using Histogram of Oriented Gradients (HOG), spatial binning, and histogram of colors.
 * Train a linear SVM classifier on the normalized features to predict the presence of a vehicle.
 * Implement a sliding-window technique and use the trained classifier to search for vehicles in images.
 * Create a heatmap to cluster vehicle detections and reject false positives.
@@ -37,26 +37,13 @@ I included a wrapper `get_hog_features` for the skimage function (as outlined in
 
 The classifier was trained on stacked HOG vectors from all three channels in the YCrCb color space.  Visualizations for each HOG feature is shown below for each class.
 
-<img src="./examples/car_example.png" width=256>
-<img src="./examples/notcar_example.png" width=256>
+<img src="./examples/car_example.png" width=256> <img src="./examples/notcar_example.png" width=256>
 
-<img src="./examples/car_ch0.jpg" width=128>
-<img src="./examples/car_hog_vis_0.jpg" width=128>
-<img src="./examples/notcar_ch0.jpg" width=128>
-<img src="./examples/notcar_hog_vis_0.jpg" width=128>
-Y (Luma)
+<img src="./examples/car_ch0.jpg" width=128><img src="./examples/car_hog_vis_0.jpg" width=128> <img src="./examples/notcar_ch0.jpg" width=128><img src="./examples/notcar_hog_vis_0.jpg" width=128>Y (Luma)
 
-<img src="./examples/car_ch1.jpg" width=128>
-<img src="./examples/car_hog_vis_1.jpg" width=128>
-<img src="./examples/notcar_ch1.jpg" width=128>
-<img src="./examples/notcar_hog_vis_1.jpg" width=128>
-Cr (Chroma)
+<img src="./examples/car_ch1.jpg" width=128><img src="./examples/car_hog_vis_1.jpg" width=128> <img src="./examples/notcar_ch1.jpg" width=128><img src="./examples/notcar_hog_vis_1.jpg" width=128>Cr (Chroma)
 
-<img src="./examples/car_ch2.jpg" width=128>
-<img src="./examples/car_hog_vis_2.jpg" width=128>
-<img src="./examples/notcar_ch2.jpg" width=128>
-<img src="./examples/notcar_hog_vis_2.jpg" width=128>
-Cb (Chroma)
+<img src="./examples/car_ch2.jpg" width=128><img src="./examples/car_hog_vis_2.jpg" width=128> <img src="./examples/notcar_ch2.jpg" width=128><img src="./examples/notcar_hog_vis_2.jpg" width=128>Cb (Chroma)
 
 **Figure 1**: top: Images from each class in the dataset; below: Each color channel and its HOG visualization
 
@@ -108,33 +95,21 @@ The functions start by copying the input image and crops out portions from the t
 
 I originally tried to optimize search area and window sizes for 3 scales, but I found that using 9 scales yielded much better results and had a negligible effect on computation time.  The range of the scales vary by 3x, and the search area is adjusted accordingly.
 
-<img src="./examples/windows_1.jpg" width=256>
-<img src="./examples/windows_1_25.jpg" width=256>
-<img src="./examples/windows_1_5.jpg" width=256>
+<img src="./examples/windows_1.jpg" width=256> <img src="./examples/windows_1_25.jpg" width=256> <img src="./examples/windows_1_5.jpg" width=256>
 
-<img src="./examples/windows_1_75.jpg" width=256>
-<img src="./examples/windows_2.jpg" width=256>
-<img src="./examples/windows_2_25.jpg" width=256>
+<img src="./examples/windows_1_75.jpg" width=256> <img src="./examples/windows_2.jpg" width=256> <img src="./examples/windows_2_25.jpg" width=256>
 
-<img src="./examples/windows_2_5.jpg" width=256>
-<img src="./examples/windows_2_75.jpg" width=256>
-<img src="./examples/windows_3.jpg" width=256>
+<img src="./examples/windows_2_5.jpg" width=256> <img src="./examples/windows_2_75.jpg" width=256> <img src="./examples/windows_3.jpg" width=256>
 
 **Figure 2**: Search windows for each of the 9 scales
 
 #### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
-<img src="./output_images/test1_1_1.jpg" width=256>
-<img src="./output_images/test1_1_1.25.jpg" width=256>
-<img src="./output_images/test1_1_1.5.jpg" width=256>
+<img src="./output_images/test1_1_1.jpg" width=256> <img src="./output_images/test1_1_1.25.jpg" width=256> <img src="./output_images/test1_1_1.5.jpg" width=256>
 
-<img src="./output_images/test1_1_1.75.jpg" width=256>
-<img src="./output_images/test1_1_2.jpg" width=256>
-<img src="./output_images/test1_1_2.25.jpg" width=256>
+<img src="./output_images/test1_1_1.75.jpg" width=256> <img src="./output_images/test1_1_2.jpg" width=256> <img src="./output_images/test1_1_2.25.jpg" width=256>
 
-<img src="./output_images/test1_1_2.5.jpg" width=256>
-<img src="./output_images/test1_1_2.75.jpg" width=256>
-<img src="./output_images/test1_1_3.jpg" width=256>
+<img src="./output_images/test1_1_2.5.jpg" width=256> <img src="./output_images/test1_1_2.75.jpg" width=256> <img src="./output_images/test1_1_3.jpg" width=256>
 
 **Figure 3**: Search windows where the classifier predicts a vehicle for each scale
 
@@ -158,14 +133,11 @@ A heatmap is used to represent areas in the image where a vehicle is detected.  
 
 The heatmap is persistent in the video pipeline, and 50% of the intensity values are carried over into the next frame.  The persistence of the heatmap and the Gaussian blur help make the bounding boxes more consistent between frames and less jittery.  The heatmap also reduces false positives by requiring the intensity be greater than a threshold before creating a bounding box.  This is effective because the false positives from the classifier do not appear with the same frequency across scales or frames as valid vehicle detections.
 
-<img src="./output_images/test1_3.jpg" width=320>
-<img src="./output_images/test2_3.jpg" width=320>
+<img src="./output_images/test1_3.jpg" width=320> <img src="./output_images/test2_3.jpg" width=320>
 
-<img src="./output_images/test3_3.jpg" width=320>
-<img src="./output_images/test4_3.jpg" width=320>
+<img src="./output_images/test3_3.jpg" width=320> <img src="./output_images/test4_3.jpg" width=320>
 
-<img src="./output_images/test5_3.jpg" width=320>
-<img src="./output_images/test6_3.jpg" width=320>
+<img src="./output_images/test5_3.jpg" width=320> <img src="./output_images/test6_3.jpg" width=320>
 
 **Figure 4**: Bounding boxes created from heatmaps for each test image
 
