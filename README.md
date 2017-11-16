@@ -115,7 +115,7 @@ I originally tried to optimize search area and window sizes for 3 scales, but I 
 
 The most important optimization to the pipeline was increasing the accuracy of the classifier.  I tried several different classifiers, but the linear SVM was the most reliable.  I also performed a grid search on the SVM parameters, and used the optimal values.  It was also important to remove the KITTI images from the training set, as their quality was inconsistent with the quality of the project video.
 
-I also optimized the performance of the test pipeline by increasing the number of scales that are searched.  This helped ensure that vehicles were always detected, and allowed the overlap to remain somewhat low.  And even though it tended to increase the number of false positives, the effect was mitigated in the video pipeline using a heatmap.
+I also optimized the performance of the test pipeline by increasing the number of scales that are searched.  This helped ensure that vehicles were always detected, and allowed the overlap to remain somewhat low.  And even though it tended to increase the number of false positives, the effect was mitigated in the video pipeline by using a heatmap.
 
 ---
 
@@ -147,7 +147,7 @@ The heatmap is persistent in the video pipeline, and 50% of the intensity values
 
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-The main issue when testing the pipeline was finding a suitable threshold and rollover percent for the heatmap.  These values complement each other and are needed prevent false positives.  In order to limit the false positive, I used fairly strict values, which required a high accuracy from the classifier.  I also faced a bug during development where the heatmap would get cleared after every frame, but I solved this by moving the `global` keyword inside the function.
+The main issue when testing the pipeline was finding a suitable threshold and rollover percent for the heatmap.  These values complement each other and are needed prevent false positives.  In order to limit the false positive, I used fairly strict values, which required a high accuracy from the classifier.  I also faced a bug during development where the heatmap would get cleared after every frame, but I solved this by using the `global` keyword inside the function.
 
 Currently, the pipeline could be improved by adjusting the search area in the sliding window search to extend completely to the right edge of the image.  Figure 2 shows this issue in the current implementation.  Increasing the overlap in the search windows might also help create a tighter bounding box around the images by creating more accurate heatmaps.
 
